@@ -28,11 +28,16 @@ public class RunningPage extends ActionBarActivity{
     TextView distanceRunView;
     TextView relativeDistanceView;
 
+    TextView debugView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.running_mode);
+
+        debugView = (TextView) findViewById(R.id.debug);
+
         finishRunButton = (Button) findViewById(R.id.button5);
         mySpeedView = (TextView) findViewById(R.id.textView3);
         myMileTimeView = (TextView) findViewById(R.id.textView5);
@@ -53,23 +58,27 @@ public class RunningPage extends ActionBarActivity{
                 Every time the location changes it recalculates the speed, displays it and sends it to the server.
                  */
 
-                if(!RunnerState.running)
-                    return;
+                //if(!RunnerState.running)
+                //    return;
 
                 location.getLatitude();
                 float speed = location.getSpeed();
                 if(speed < 0.5) speed = 0;
                 float mileTime = new Float(1 / (speed * 0.0372822715));
 
-                mySpeedView.setText("" + speed);
-                myMileTimeView.setText("" + mileTime);
-                friendSpeedView.setText("" + RunnerState.partnerSpeed);
-                friendMileTimeView.setText("" + RunnerState.mileTime(RunnerState.partnerSpeed));
-                distanceRunView.setText("" + RunnerState.personalDistance);
-                relativeDistanceView.setText("" + RunnerState.relativeDistance);
-                //mainText.setText("Current speed: " + speed + " m/s\nMile time: " + mileTime + " minutes");
+                String speedDisplay = String.format("%.1f", speed);
+                String mileTimeDisplay = String.format("%.1f", mileTime);
 
+                mySpeedView.setText("" + speedDisplay + "m/s");
+                myMileTimeView.setText("" + mileTimeDisplay + "mph");
+                friendSpeedView.setText("" + String.format("%.1f", RunnerState.partnerSpeed) + "m/s");
+                friendMileTimeView.setText("" + String.format("%.1f", RunnerState.mileTime(RunnerState.partnerSpeed)) + "mph");
+                distanceRunView.setText("" + RunnerState.personalDistance + "mi");
+                relativeDistanceView.setText("" + RunnerState.relativeDistance + "mi");
+                //mainText.setText("Current speed: " + speed + " m/s\nMile time: " + mileTime + " minutes");
+                debugView.setText(RunnerState.runnerID + "," + speed + "," + System.currentTimeMillis());
                 RunnerState.sender.queue.add(RunnerState.runnerID + "," + speed + "," + System.currentTimeMillis());
+
             }
 
             public void onStatusChanged(String provider, int status, Bundle extras) {}

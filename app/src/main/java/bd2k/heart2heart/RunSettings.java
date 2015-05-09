@@ -43,12 +43,18 @@ public class RunSettings extends ActionBarActivity {
     TextView countDownText;
     TextView colorView;
 
+    TextView debugView;
+
+
     public int counter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.run_settings);
+
+        debugView = (TextView) findViewById(R.id.debug);
+
         getStoredProfile();
         //enableLocation();
         addListenerOnButtons();
@@ -186,14 +192,16 @@ public class RunSettings extends ActionBarActivity {
         friendLabel.setVisibility(View.INVISIBLE);
         settingsLabel.setVisibility(View.INVISIBLE);
         syncOrBeginButton.setVisibility(View.INVISIBLE);
-
+        syncOrBeginButton.setAlpha(0);
     }
 
     public void displayCountDown() {
         final Context context = this;
         colorView.setVisibility(View.VISIBLE);
+        colorView.bringToFront();
         countDownText.setVisibility(View.VISIBLE);
         countDownText.bringToFront();
+        syncOrBeginButton.setAlpha(0);
 
         new CountDownTimer(2800, 500) {
             public void onTick(long millisUntilFinished) {
