@@ -7,6 +7,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -50,6 +52,37 @@ public class RunSettings extends ActionBarActivity {
         getStoredProfile();
         //enableLocation();
         addListenerOnButtons();
+
+        final String androidId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+        System.out.println(androidId);
+        //these aren't the right unique IDs
+        switch(androidId)
+        {
+            case "921b5535f5bbeead"://this is the emulator
+                RunnerState.runnerID = "1";
+                break;
+            case "d4ec30ea085d913e"://this is tevfik's phone
+                RunnerState.runnerID = "2";
+                break;
+            default:
+                RunnerState.runnerID = "1";
+                break;
+        }
+
+        RunnerState.sender = new Communicator();
+        RunnerState.sender.start();
+
+
+
+
+        final SoundThread sounds = new SoundThread(this);
+        sounds.start();
+
+
+
+
+
+
     }
 
     public void getStoredProfile() { // to send to the other device
@@ -173,6 +206,7 @@ public class RunSettings extends ActionBarActivity {
                 {
                     colorView.setBackgroundColor(Color.GREEN);
                     countDownText.setText("GO!");
+                    RunnerState.sender.queue.add(RunnerState.runnerID + "," + "ready");//tied to start button
                 }
                 counter++;
             }

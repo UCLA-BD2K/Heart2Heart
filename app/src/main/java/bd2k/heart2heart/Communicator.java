@@ -20,16 +20,7 @@ public class Communicator extends Thread {
     Socket socket;
     PrintWriter out;
     BufferedReader br;
-    TextView responseText;
-    Activity mainActivity;
-    RunnerState myState;
 
-    public Communicator(RunnerState myState, Activity mainActivity, TextView responseText)
-    {
-        this.myState = myState;
-        this.responseText = responseText;
-        this.mainActivity = mainActivity;
-    }
 
     public void run() {
 
@@ -48,35 +39,27 @@ public class Communicator extends Thread {
                     System.out.println("message sent: " + msg);
 
                     final String response = br.readLine();
-                    myState.lastServerResponse = System.currentTimeMillis();
+                    RunnerState.lastServerResponse = System.currentTimeMillis();
                     System.out.println("server says: " + response);
 
                     if(response == "start")
                     {
-                        myState.running = true;
+                        RunnerState.running = true;
                         continue;
                     }
                     else if(response == "finished")
                     {
-                        myState.running = false;
+                        RunnerState.running = false;
                         continue;
                     }
-                    if(!myState.running)
+                    if(!RunnerState.running)
                         continue;
 
                     String[] frags = response.split(" ");
 
-                    myState.personalDistance = Float.valueOf(frags[0]);
-                    myState.relativeDistance = Float.valueOf(frags[1]);
-                    myState.partnerSpeed = Float.valueOf(frags[2]);
-
-                    mainActivity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            //stuff that updates ui
-                            responseText.setText("total distance: " + myState.personalDistance + " meters\nrelative distance: " + myState.relativeDistance + " meters\npartner's speed: " + myState.partnerSpeed);
-                        }
-                    });
+                    RunnerState.personalDistance = Float.valueOf(frags[0]);
+                    RunnerState.relativeDistance = Float.valueOf(frags[1]);
+                    RunnerState.partnerSpeed = Float.valueOf(frags[2]);
 
                 }
             }

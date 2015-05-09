@@ -3,6 +3,9 @@ package bd2k.heart2heart;
 import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -38,6 +41,45 @@ public class RunningPage extends ActionBarActivity{
         distanceRunView = (TextView) findViewById(R.id.textView7);
         relativeDistanceView = (TextView) findViewById(R.id.textView15);
         addListenerOnButtons();
+
+
+        // Acquire a reference to the system Location Manager
+        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        // Define a listener that responds to location updates
+        LocationListener locationListener = new LocationListener() {
+            public void onLocationChanged(Location location) {
+
+                /*
+                Every time the location changes it recalculates the speed, displays it and sends it to the server.
+                 */
+
+                if(!RunnerState.running)
+                    return;
+
+                location.getLatitude();
+                float speed = location.getSpeed();
+                if(speed < 0.5) speed = 0;
+                float mileTime = new Float(1 / (speed * 0.0372822715));
+
+                mySpeedView.setText("" + speed);
+                myMileTimeView.setText("" + mileTime);
+                friendSpeedView.setText("" + RunnerState.partnerSpeed);
+                friendMileTimeView.setText("" + RunnerState.mileTime(RunnerState.partnerSpeed));
+                distanceRunView.setText("" + RunnerState.personalDistance);
+                relativeDistanceView.setText("" + RunnerState.relativeDistance);
+                //mainText.setText("Current speed: " + speed + " m/s\nMile time: " + mileTime + " minutes");
+
+                RunnerState.sender.queue.add(RunnerState.runnerID + "," + speed + "," + System.currentTimeMillis());
+            }
+
+            public void onStatusChanged(String provider, int status, Bundle extras) {}
+
+            public void onProviderEnabled(String provider) {}
+
+            public void onProviderDisabled(String provider) {}
+        };
+
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
     }
 
     @Override
@@ -69,6 +111,7 @@ public class RunningPage extends ActionBarActivity{
             @Override
             public void onClick(View arg0) {
                 Intent intent = new Intent(context, MainActivity.class);
+                RunnerState.sender.queue.add(RunnerState.runnerID + "," + "done");//tied to stop button
                 startActivity(intent);
             }
         });

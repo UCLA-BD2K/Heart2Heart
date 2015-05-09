@@ -5,18 +5,21 @@ package bd2k.heart2heart;
  */
 public class RunnerState {
 
-    public float personalSpeed = 0;
-    public float personalDistance = 0;
+    public static String runnerID = "";
+    public static float personalSpeed = 0;
+    public static float personalDistance = 0;
 
-    public float partnerSpeed = 0;
-    public float partnerDistance = 0;
+    public static float partnerSpeed = 0;
+    public static float partnerDistance = 0;
 
-    public float relativeDistance = 0;
-    public boolean sync = true;
+    public static float relativeDistance = 0;
+    public static boolean sync = true;
 
-    public long lastServerResponse = 0;
+    public static long lastServerResponse = 0;
 
-    public boolean running = false;
+    public static boolean running = false;
+
+    public static Communicator sender;
 
     public static float mileTime(float speedInMPS)
     {
