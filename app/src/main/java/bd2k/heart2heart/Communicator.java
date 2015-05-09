@@ -67,7 +67,7 @@ public class Communicator extends Thread {
                     String[] frags = response.split(" ");
 
                     myState.personalDistance = Float.valueOf(frags[0]);
-                    myState.relativeDistance = myState.personalDistance - Float.valueOf(frags[1]);
+                    myState.relativeDistance = Float.valueOf(frags[1]);
                     myState.partnerSpeed = Float.valueOf(frags[2]);
 
                     mainActivity.runOnUiThread(new Runnable() {
