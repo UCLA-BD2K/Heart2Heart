@@ -1,17 +1,79 @@
 package bd2k.heart2heart;
 
+import android.content.Context;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
+
+
+    final RunnerState myState = new RunnerState();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+        //This is in the onCreate method
+        LinearLayout lView = new LinearLayout(this);
+        lView.setOrientation(LinearLayout.VERTICAL);
+
+        final TextView mainText = new TextView(this);
+        mainText.setText("Ready, set, GO!");
+
+        final TextView responseText = new TextView(this);
+        responseText.setText("Waiting for response from server...");
+
+        lView.addView(mainText);
+        lView.addView(responseText);
+
+        setContentView(lView);
+
+        final String runnerID = "1";
+
+
+        final Communicator sender = new Communicator(myState, this, responseText);
+        sender.start();
+
+        final SoundThread sounds = new SoundThread(myState, this);
+        sounds.start();
+
+        sender.queue.add(runnerID + "," + 0.5 + "," + System.currentTimeMillis());
+
+        // Acquire a reference to the system Location Manager
+        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        // Define a listener that responds to location updates
+        LocationListener locationListener = new LocationListener() {
+            public void onLocationChanged(Location location) {
+
+                /*
+                Every time the location changes it recalculates the speed, displays it and sends it to the server.
+                 */
+
+                location.getLatitude();
+                float speed = location.getSpeed();
+                if(speed < 0.5) speed = 0;
+                float mileTime = new Float(1 / (speed * 0.0372822715));
+                mainText.setText("Current speed: " + speed + " m/s\nMile time: " + mileTime + " minutes");
+                sender.queue.add(runnerID + "," + speed + "," + System.currentTimeMillis());
+            }
+
+            public void onStatusChanged(String provider, int status, Bundle extras) {}
+
+            public void onProviderEnabled(String provider) {}
+
+            public void onProviderDisabled(String provider) {}
+        };
+
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
     }
 
     @Override
