@@ -2,11 +2,11 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\hannah\StudioProjects\heart2heart\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\jars\libs\internal_impl-22.0.0.jar"
+        jar="C:\Users\hannah\StudioProjects\heart2heart\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
-        <dex dex="C:\Users\hannah\StudioProjects\heart2heart\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-a15d5c6b9ba1bc411a9d77cdad8c175131887d27.jar" />
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="C:\Users\hannah\StudioProjects\heart2heart\app\build\intermediates\pre-dexed\debug\classes-b36c31b9849c99a19768c71d3481b6eacc11f981.jar" />
     </item>
     <item
         jar="C:\Users\hannah\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
@@ -23,11 +23,11 @@
         <dex dex="C:\Users\hannah\StudioProjects\heart2heart\app\build\intermediates\pre-dexed\debug\classes-ec5a3e0d7fe09fbd25b39f3c51411ac9ba0eae7d.jar" />
     </item>
     <item
-        jar="C:\Users\hannah\StudioProjects\heart2heart\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\jars\classes.jar"
+        jar="C:\Users\hannah\StudioProjects\heart2heart\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\jars\libs\internal_impl-22.0.0.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
-        <dex dex="C:\Users\hannah\StudioProjects\heart2heart\app\build\intermediates\pre-dexed\debug\classes-b36c31b9849c99a19768c71d3481b6eacc11f981.jar" />
+        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
+        <dex dex="C:\Users\hannah\StudioProjects\heart2heart\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-a15d5c6b9ba1bc411a9d77cdad8c175131887d27.jar" />
     </item>
 
 </items>
