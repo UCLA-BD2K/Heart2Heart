@@ -6,24 +6,28 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by hannah on 5/8/2015.
  */
 public class ProfileInfo extends ActionBarActivity{
 
+    String username;
     String name;
     String email;
     String phone;
     String sex;
     String age;
 
+    TextView usernameView;
     TextView nameView;
     TextView phoneView;
     TextView emailView;
@@ -46,6 +50,7 @@ public class ProfileInfo extends ActionBarActivity{
 
     public void getStoredProfile() {
         SharedPreferences profileSettings = getSharedPreferences("ProfileInfo", MODE_PRIVATE);
+        username = profileSettings.getString("username", "Root");
         name = profileSettings.getString("name", "First and Last");
         email = profileSettings.getString("email", "example@test.com");
         phone = profileSettings.getString("phone", "1234567890");
@@ -54,6 +59,7 @@ public class ProfileInfo extends ActionBarActivity{
     }
 
     public void fillProfile() {
+        usernameView = (TextView) findViewById(R.id.editText2);
         nameView = (TextView) findViewById(R.id.editText3);
         phoneView = (TextView) findViewById(R.id.editText6);
         emailView = (TextView) findViewById(R.id.editText5);
@@ -80,6 +86,7 @@ public class ProfileInfo extends ActionBarActivity{
                 break;
         }
 
+        usernameView.setText(username);
         nameView.setText(name);
         phoneView.setText(phone);
         emailView.setText(email);
@@ -128,6 +135,7 @@ public class ProfileInfo extends ActionBarActivity{
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
+                username = usernameView.getText().toString();
                 name = nameView.getText().toString();
                 email = emailView.getText().toString();
                 phone = phoneView.getText().toString();
@@ -142,11 +150,22 @@ public class ProfileInfo extends ActionBarActivity{
 
                 SharedPreferences profileSettings = getSharedPreferences("ProfileInfo", MODE_PRIVATE);
                 SharedPreferences.Editor editor = profileSettings.edit();
+                editor.putString("username", username);
                 editor.putString("name", name);
                 editor.putString("email", email);
                 editor.putString("phone", phone);
                 editor.putString("age", age);
                 editor.putString("sex", sex);
+
+                editor.commit();
+
+                Context context = getApplicationContext();
+                CharSequence text = "Your profile has been saved!";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.setGravity(Gravity.BOTTOM|Gravity.CENTER, 0, 0);
+                toast.show();
             }
         });
 
