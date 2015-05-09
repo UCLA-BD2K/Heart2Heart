@@ -2,39 +2,32 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\hannah\.gradle\caches\modules-2\files-2.1\com.google.android\support-v4\r7\24d0f6da34c3a2bfcf736ab42d51c91ac821ee22\support-v4-r7.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="24d0f6da34c3a2bfcf736ab42d51c91ac821ee22">
-        <dex dex="C:\Users\hannah\StudioProjects\heart2heart\app\build\intermediates\pre-dexed\debug\support-v4-r7-2afc4254812614e4a34ecfc6742dcf28c54c5cf5.jar" />
-    </item>
-    <item
-        jar="C:\Users\hannah\StudioProjects\heart2heart\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\jars\libs\internal_impl-22.0.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
-        <dex dex="C:\Users\hannah\StudioProjects\heart2heart\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-a15d5c6b9ba1bc411a9d77cdad8c175131887d27.jar" />
-    </item>
-    <item
-        jar="C:\Users\hannah\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
-        <dex dex="C:\Users\hannah\StudioProjects\heart2heart\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-2de9137ee553a90e6b9bd65af808724b6000d913.jar" />
-    </item>
-    <item
-        jar="C:\Users\hannah\StudioProjects\heart2heart\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
-        <dex dex="C:\Users\hannah\StudioProjects\heart2heart\app\build\intermediates\pre-dexed\debug\classes-b36c31b9849c99a19768c71d3481b6eacc11f981.jar" />
-    </item>
-    <item
-        jar="C:\Users\hannah\StudioProjects\heart2heart\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\jars\classes.jar"
+        jar="C:\Users\Brian\StudioProjects\heart2heart\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="d84409890828e07d344a3b9b1da545dba9897b51">
-        <dex dex="C:\Users\hannah\StudioProjects\heart2heart\app\build\intermediates\pre-dexed\debug\classes-ec5a3e0d7fe09fbd25b39f3c51411ac9ba0eae7d.jar" />
+        <dex dex="C:\Users\Brian\StudioProjects\heart2heart\app\build\intermediates\pre-dexed\debug\classes-ca049ac65ef38bbedbd92cc7af97acd981d9263d.jar" />
+    </item>
+    <item
+        jar="C:\Users\Brian\StudioProjects\heart2heart\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="C:\Users\Brian\StudioProjects\heart2heart\app\build\intermediates\pre-dexed\debug\classes-0132f602e722317287b1f462b6edcb198d7899fd.jar" />
+    </item>
+    <item
+        jar="C:\Users\Brian\StudioProjects\heart2heart\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\jars\libs\internal_impl-22.0.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
+        <dex dex="C:\Users\Brian\StudioProjects\heart2heart\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-214a9907a0e9a49376bf61a620a5f530fbe34ecf.jar" />
+    </item>
+    <item
+        jar="C:\Users\Brian\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
+        <dex dex="C:\Users\Brian\StudioProjects\heart2heart\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-7be921d85bbaf1c355715764729952418faf165f.jar" />
     </item>
 
 </items>
