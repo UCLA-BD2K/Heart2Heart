@@ -13,6 +13,7 @@ public class SoundThread extends Thread {
     Activity mainActivity;
 
     int lastSoundPlayed;
+    int soundInterval = 3000;
 
     public SoundThread(RunnerState myState, Activity mainActivity)
     {
@@ -21,12 +22,13 @@ public class SoundThread extends Thread {
 
         //starting sound!
         playSound(R.raw.sync);
-
     }
 
     public void run() {
+
+
         while (true) {
-            try{sleep(3000);}catch(Exception e){}
+            try{sleep(soundInterval);}catch(Exception e){}
             playSoundIfNeeded();//playSound(R.raw.sync);
         }
     }
@@ -37,6 +39,14 @@ public class SoundThread extends Thread {
             return;
 
         final float maxSeparation = 15;//maximum distance between runners before audio plays
+
+        //change the frequency if needed
+        if(Math.abs(myState.relativeDistance) > 3 * maxSeparation)
+            soundInterval = 1500;
+        else if(Math.abs(myState.relativeDistance) > 2 * maxSeparation)
+            soundInterval = 2000;
+        else soundInterval = 3000;
+
         if(myState.relativeDistance > maxSeparation)
         {
             myState.sync = false;

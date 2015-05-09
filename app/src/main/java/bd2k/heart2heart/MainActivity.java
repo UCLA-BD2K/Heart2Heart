@@ -42,28 +42,30 @@ public class MainActivity extends ActionBarActivity {
 
         final String androidId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
         System.out.println(androidId);
+        //these aren't the right unique IDs
         switch(androidId)
         {
-            case "921b5535f5bbeead":
+            case "921b5535f5bbeead"://this is the emulator
                 runnerID = "1";
                 break;
-            case "921b5fasdfbbeead":
+            case "d4ec30ea085d913e"://this is tevfik's phone
                 runnerID = "2";
                 break;
             default:
-                runnerID = "0";
+                runnerID = "1";
                 break;
         }
-
-
 
         final Communicator sender = new Communicator(myState, this, responseText);
         sender.start();
 
+        sender.queue.add(runnerID + "," + "ready");//tied to start button
+        //sender.queue.add(runnerID + "," + "done");//tied to stop button
+
         final SoundThread sounds = new SoundThread(myState, this);
         sounds.start();
 
-        sender.queue.add(runnerID + "," + "ready");
+
 
         // Acquire a reference to the system Location Manager
         LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);

@@ -56,6 +56,11 @@ public class Communicator extends Thread {
                         myState.running = true;
                         continue;
                     }
+                    else if(response == "finished")
+                    {
+                        myState.running = false;
+                        continue;
+                    }
                     if(!myState.running)
                         continue;
 
