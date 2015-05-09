@@ -51,6 +51,14 @@ public class Communicator extends Thread {
                     myState.lastServerResponse = System.currentTimeMillis();
                     System.out.println("server says: " + response);
 
+                    if(response == "start")
+                    {
+                        myState.running = true;
+                        continue;
+                    }
+                    if(!myState.running)
+                        continue;
+
                     String[] frags = response.split(" ");
 
                     myState.personalDistance = Float.valueOf(frags[0]);

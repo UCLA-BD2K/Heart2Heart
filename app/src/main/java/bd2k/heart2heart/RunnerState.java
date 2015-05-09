@@ -16,6 +16,8 @@ public class RunnerState {
 
     public long lastServerResponse = 0;
 
+    public boolean running = false;
+
     public static float mileTime(float speedInMPS)
     {
         return new Float(1 / (speedInMPS * 0.0372822715));

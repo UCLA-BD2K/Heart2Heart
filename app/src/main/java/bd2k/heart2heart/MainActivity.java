@@ -4,6 +4,7 @@ import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -37,7 +38,23 @@ public class MainActivity extends ActionBarActivity {
 
         setContentView(lView);
 
-        final String runnerID = "1";
+        final String runnerID;
+
+        final String androidId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+        System.out.println(androidId);
+        switch(androidId)
+        {
+            case "921b5535f5bbeead":
+                runnerID = "1";
+                break;
+            case "921b5fasdfbbeead":
+                runnerID = "2";
+                break;
+            default:
+                runnerID = "0";
+                break;
+        }
+
 
 
         final Communicator sender = new Communicator(myState, this, responseText);
@@ -46,7 +63,7 @@ public class MainActivity extends ActionBarActivity {
         final SoundThread sounds = new SoundThread(myState, this);
         sounds.start();
 
-        sender.queue.add(runnerID + "," + 0.5 + "," + System.currentTimeMillis());
+        sender.queue.add(runnerID + "," + "ready");
 
         // Acquire a reference to the system Location Manager
         LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
@@ -57,6 +74,9 @@ public class MainActivity extends ActionBarActivity {
                 /*
                 Every time the location changes it recalculates the speed, displays it and sends it to the server.
                  */
+
+                if(!myState.running)
+                    return;
 
                 location.getLatitude();
                 float speed = location.getSpeed();

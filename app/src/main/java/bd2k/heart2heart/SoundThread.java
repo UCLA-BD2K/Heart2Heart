@@ -27,8 +27,7 @@ public class SoundThread extends Thread {
     public void run() {
         while (true) {
             try{sleep(3000);}catch(Exception e){}
-            playSoundIfNeeded();
-            //playSound(R.raw.sync);
+            playSoundIfNeeded();//playSound(R.raw.sync);
         }
     }
 
