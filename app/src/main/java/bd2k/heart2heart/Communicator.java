@@ -51,12 +51,12 @@ public class Communicator extends Thread {
                     myState.lastServerResponse = System.currentTimeMillis();
                     System.out.println("server says: " + response);
 
-                    if(response == "start")
+                    if(response.equals("start"))
                     {
                         myState.running = true;
                         continue;
                     }
-                    else if(response == "finished")
+                    else if(response.equals("finished"))
                     {
                         myState.running = false;
                         continue;
