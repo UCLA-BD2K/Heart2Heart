@@ -48,7 +48,7 @@ public class MainActivity extends ActionBarActivity {
             case "921b5535f5bbeead"://this is the emulator
                 runnerID = "1";
                 break;
-            case "d4ec30ea085d913e"://this is tevfik's phone
+            case "[[REDACTED]]"://this is tevfik's phone
                 runnerID = "2";
                 break;
             default:
